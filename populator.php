@@ -8,7 +8,7 @@ class Populator
     public static function populate()
     {
         try {
-            $data = DataGenerator::getInsertData(getenv('QTD'));
+            $data = (new DataGenerator(getenv('QTD')))->getInsertData();
             if (count($data) > 0) {
 
                 $columns = array_keys($data[0]);
