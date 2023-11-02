@@ -1,7 +1,7 @@
 # Popule tabelas no MySQL ou MariaDB com este populador sem dependecias!
 
 
-# Este script não necessita de nenhum componente além dos nativos do PHP
+### Este script não necessita de nenhum componente além dos nativos do PHP
 
 Popular qualquer tabela em php com quantos registros quiser
 
