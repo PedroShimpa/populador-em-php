@@ -4,13 +4,14 @@ require 'data_creator.php';
 
 class DataGenerator extends DataCreator
 {
+    /** O nome da coluna como chave e o tipo do dado como valor */
     protected $insert = [
         'nome'        => 'name',
         'sobrenome'   => 'surname',
         'email'       => 'email',
-        'descricao'   => 'text',
-        'endereco'    => 'text',
-        'numero'      => 'number',
+        // 'descricao'   => 'text',
+        // 'endereco'    => 'text',
+        // 'numero'      => 'number',
         'criado_em'   => 'time',
     ];
 

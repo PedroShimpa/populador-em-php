@@ -8,9 +8,7 @@ class Populator
     public static function populate()
     {
         try {
-            $data = (new DataGenerator(getenv('QTD')))->getInsertData();
-            print_r($data);
-            die();
+            $data = (new DataGenerator(getenv('QTD_REGISTROS')))->getInsertData();
             if (count($data) > 0) {
                 $columns = array_keys($data[0]);
                 $sql = self::getSQL($columns, getenv('TABLE'));
@@ -19,9 +17,11 @@ class Populator
                     $conn = new PDO("mysql:host=" . getenv('SERVER') . ";dbname=" . getenv('DATABASE'), getenv('USERNAME'), getenv('PASSWORD'));
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $stmt = $conn->prepare($sql);
-                    foreach ($data[$key] as $coluna => $valor) {
-                        $stmt->bindParam(':' . $coluna, $valor);
+                  
+                    foreach ($value as $coluna => $valor) {
+                        $stmt->bindValue(':' . $coluna, $valor);
                     }
+           
                     $stmt->execute();
                 }
                 self::logMsg("Registros Inseridos");
@@ -33,7 +33,7 @@ class Populator
 
     private static function getSQL(array $columns, string $table): string
     {
-        $implodeColumns = implode(',', $columns);
+        $implodeColumns = implode(', ', $columns);
         $bindColumns = self::getBind($columns);
         $stmt = "INSERT INTO $table ($implodeColumns) VALUES ($bindColumns)";
         return $stmt;

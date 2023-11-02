@@ -1,7 +1,7 @@
 <?php
 
 putenv('SERVER=localhost');
-putenv('USERNAM=Eroot');
+putenv('USERNAME=root');
 putenv('DATABASE=populador');
 putenv('TABLE=clientes');
-putenv('QTD=100');
+putenv('QTD_REGISTROS=100');
