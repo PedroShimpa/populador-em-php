@@ -2,18 +2,19 @@
 
 require 'data_creator.php';
 
-
 class DataGenerator extends DataCreator
 {
     protected $insert = [
-        'nome'        => 'names',
-        'sobrenome'   => 'surnames',
-        'email'       => 'emails',
-        'descricao'   => 'descriptions',
-        'criado_em'   => 'times'
+        'nome'        => 'name',
+        'sobrenome'   => 'surname',
+        'email'       => 'email',
+        'descricao'   => 'text',
+        'endereco'    => 'text',
+        'numero'      => 'number',
+        'criado_em'   => 'time',
     ];
 
-    private $qtd = 200;
+    protected $qtd = 200;
 
     public function __construct(int $qtd)
     {
@@ -29,13 +30,14 @@ class DataGenerator extends DataCreator
 
     private function formatInsertData(&$finalData)
     {
+
         $insert = $this->getInsert();
         for ($i = 1; $i <= $this->getQtd(); $i++) {
             $data = [];
             foreach ($insert as $column => $key) {
                 $method = 'get' . ucfirst($key);
                 if (method_exists($this, $method)) {
-                    $data[$column] = $this->$method;
+                    $data[$column] = $this->$method();
                 }
             }
             array_push($finalData, $data);

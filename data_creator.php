@@ -1,9 +1,6 @@
 <?php
-
-
-abstract class DataCreator
+class DataCreator
 {
-
 	protected $insert;
 
 	protected $qtd;
@@ -14,38 +11,37 @@ abstract class DataCreator
 
 	private $words = ["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", "magna", "aliqua", "Ut", "enim", "ad", "minim", "veniam", "quis", "nostrud", "exercitation", "ullamco", "laboris", "nisi", "aliquip", "ex", "ea", "commodo", "consequat", "Duis", "aute", "irure", "in", "reprehenderit", "in", "voluptate", "velit", "esse", "cillum", "dolore", "eu", "fugiat", "nulla", "pariatur", "Excepteur", "sint", "occaecat", "cupidatat", "non", "proident", "sunt", "in", "culpa", "qui", "officia", "deserunt", "mollit", "anim", "id", "est", "laborum"];
 
-	public function getDescritions(): array
+	public function getText(): string
 	{
-		$texts = array();
-		for ($i = 0; $i < $this->qtd; $i++) {
-			$randomWord = $this->words[array_rand($this->words)];
-			$texts[] = $randomWord;
+		$text = '';
+		for ($i = 0; $i < 20; $i++) {
+			$text  = $text. ' '. $this->words[array_rand($this->words)];
 		}
-		return $texts;
+		return $text;
+	}
+	public function getNumber(): string
+	{
+		return rand(1, 500);
 	}
 
-	public function getNames(): array
+	public function getName(): string
 	{
-		return $this->randomArray($this->names);
+		return $this->randomData($this->names);
 	}
 
-	public function getEmails(): array
+	public function getEmail()
 	{
-		return $this->randomArray($this->createEmails($this->names));
+		return $this->randomData($this->createEmails($this->names));
 	}
 
-	public function getTimes()
+	public function getTime(): string
 	{
-		$times = array();
-		for ($i = 0; $i < $this->qtd; $i++) {
-			$times[] = $this->createRandomDate();
-		}
-		return $times;
+		return $this->createRandomDate();
 	}
 
-	public function getSurnames(): array
+	public function getSurname(): string
 	{
-		return $this->randomArray($this->surnames);
+		return $this->randomData($this->surnames);
 	}
 
 	private function createEmails(): array
@@ -66,13 +62,9 @@ abstract class DataCreator
 		return $randomDate->setTimestamp($randomTimestamp)->format('Y-m-d H:i:s');
 	}
 
-	private function randomArray(array $data)
+	private function randomData(array $data): string
 	{
-		$returnArray = array();
-		for ($i = 1; $i <= $this->qtd; $i++) {
-			array_push($returnArray, $data[rand(0, count($this->names) - 1)]);
-		}
-		return $returnArray;
+		return $data[array_rand($data)];
 	}
 
 	private  function removeUtf8($texto)

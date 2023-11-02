@@ -9,8 +9,9 @@ class Populator
     {
         try {
             $data = (new DataGenerator(getenv('QTD')))->getInsertData();
+            print_r($data);
+            die();
             if (count($data) > 0) {
-
                 $columns = array_keys($data[0]);
                 $sql = self::getSQL($columns, getenv('TABLE'));
                 self::logMsg("Inserindo " . count($data) . ' Registros');
