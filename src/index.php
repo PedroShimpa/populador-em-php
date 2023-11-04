@@ -1,5 +1,5 @@
 <?php
 
-require 'populador.php';
+require 'populator.php';
 
 Populator::populate();

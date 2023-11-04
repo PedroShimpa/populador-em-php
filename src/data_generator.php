@@ -8,11 +8,11 @@ class DataGenerator extends DataCreator
     protected $insert = [
         'nome'        => 'name',
         'sobrenome'   => 'surname',
-        'email'       => 'email',
+        // 'email'       => 'email',
         // 'descricao'   => 'text',
         // 'endereco'    => 'text',
         // 'numero'      => 'number',
-        'criado_em'   => 'time',
+        // 'criado_em'   => 'time',
     ];
 
     protected $qtd = 200;
